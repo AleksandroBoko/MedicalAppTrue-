@@ -46,14 +46,18 @@
     <Compile Include="Domain\Doctor.cs" />
     <Compile Include="Domain\Medicine.cs" />
     <Compile Include="Domain\Report.cs" />
-    <Compile Include="Logic\DoctorService.cs" />
-    <Compile Include="Logic\IDoctorService.cs" />
+    <Compile Include="Logic\PersonService.cs" />
+    <Compile Include="Logic\IService.cs" />
+    <Compile Include="Logic\MedicineService.cs" />
+    <Compile Include="Logic\ReportService.cs" />
+    <Compile Include="Repository\MedicineRepository.cs" />
     <Compile Include="Repository\PersonRepository.cs" />
     <Compile Include="Repository\IRepository.cs" />
     <Compile Include="Domain\Patient.cs" />
     <Compile Include="Domain\Person.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Repository\ReportRepository.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

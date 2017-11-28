@@ -1,10 +1,11 @@
-﻿using System;
+﻿using HospitalToday.Domain;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace HospitalToday.Domain
+namespace HospitalToday.Repository
 {
     class PersonRepository : IRepository<Person>
     {
