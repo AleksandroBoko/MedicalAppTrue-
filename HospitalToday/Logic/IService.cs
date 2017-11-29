@@ -11,5 +11,6 @@ namespace HospitalToday.Logic
     {
         void Add(T item);
         void Remove(T item);
+        List<T> GetList();
     }
 }

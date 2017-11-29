@@ -26,5 +26,10 @@ namespace HospitalToday.Logic
         {
             reportRep.Delete(item.Id);
         }
+
+        public List<Report> GetList()
+        {
+            return reportRep.GetList();
+        }
     }
 }

@@ -16,6 +16,11 @@ namespace HospitalToday
         static void Main(string[] args)
         {
             Initializer.InitServices();
+            Initializer.AddingPersons();
+            Initializer.ShowDoctors();
+            Initializer.ShowPatients();
+
+            Console.ReadKey();
         }
 
     }
