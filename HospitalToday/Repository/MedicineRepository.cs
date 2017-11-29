@@ -1,4 +1,5 @@
 ﻿using HospitalToday.Domain;
+using HospitalToday.Domain.Medicine;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,51 +10,54 @@ namespace HospitalToday.Repository
 {
     class MedicineRepository : IRepository<Medicine>
     {
-        private static IRepository<Medicine> MedRep;
-
-        List<Medicine> Medicines;
+        private static IRepository<Medicine> medRep;
+        private List<Medicine> medicines;
 
         private MedicineRepository()
         {
-            Medicines = new List<Medicine>();
+            medicines = new List<Medicine>();
         }
 
         public static IRepository<Medicine> GetRepository()
         {
-            if (MedRep == null)
-                MedRep = new MedicineRepository();
+            if (medRep == null)
+                medRep = new MedicineRepository();
 
-            return MedRep;
+            return medRep;
         }
 
         public void Create(Medicine item)
         {
-            Medicines.Add(item);
+            medicines.Add(item);
         }
 
         public void Delete(int id)
         {
-            Medicines.Remove(Medicines.Where(m => m.Id == id).First());
+            var t = medicines.FirstOrDefault(m => m.Id == id);
+            if (t != null)
+            {
+                medicines.Remove(t);
+            }
         }
 
         public Medicine GetItem(int id)
         {
-            return Medicines.Where(m => m.Id == id).First();
+            return medicines.FirstOrDefault(m => m.Id == id);
         }
 
         public List<Medicine> GetList()
         {
-            return Medicines;
+            return medicines;
         }
 
         public void Save()
         {
-            // TODO add code;
+            throw new NotImplementedException();
         }
 
         public void Update(Medicine item)
         {
-            // TODO add code;
+            throw new NotImplementedException();
         }
     }
 }

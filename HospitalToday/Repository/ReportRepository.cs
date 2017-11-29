@@ -9,36 +9,52 @@ namespace HospitalToday.Repository
 {
     class ReportRepository : IRepository<Report>
     {
-        List<Report> Reports;
+        private List<Report> reports;
+        private static IRepository<Report> reportRep;
+
+        private ReportRepository()
+        {
+            reports = new List<Report>();
+        }
+
+        public static IRepository<Report> GetRepository()
+        {
+            if (reportRep == null)
+            {
+                reportRep = new ReportRepository();
+            }
+
+            return reportRep;
+        }
 
         public void Create(Report item)
         {
-            Reports.Add(item);
+            reports.Add(item);
         }
 
         public void Delete(int id)
         {
-            Reports.Remove(Reports.Where(n => n.Id == id).First());
+            reports.Remove(reports.FirstOrDefault(n => n.Id == id));
         }
 
         public Report GetItem(int id)
         {
-            return Reports.Where(n => n.Id == id).First();
+            return reports.FirstOrDefault(n => n.Id == id);
         }
 
         public List<Report> GetList()
         {
-            return Reports;
-        }
-
-        public void Save()
-        {
-            // TODO: add code
+            return reports;
         }
 
         public void Update(Report item)
         {
-            // TODO: add code
+            throw new NotImplementedException();
+        }
+
+        public void Save()
+        {
+            throw new NotImplementedException();
         }
     }
 }

@@ -10,21 +10,21 @@ namespace HospitalToday.Logic
 {
     class ReportService : IService<Report>
     {
-        IRepository<Report> ReportRep;
+        IRepository<Report> reportRep;
 
         public ReportService()
         {
-            ReportRep = new ReportRepository();
+            reportRep = ReportRepository.GetRepository();
         }
 
         public void Add(Report item)
         {
-            ReportRep.Create(item);
+            reportRep.Create(item);
         }
 
         public void Remove(Report item)
         {
-            ReportRep.Delete(item.Id);
+            reportRep.Delete(item.Id);
         }
     }
 }

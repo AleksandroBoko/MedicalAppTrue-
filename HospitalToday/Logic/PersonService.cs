@@ -1,4 +1,5 @@
 ﻿using HospitalToday.Domain;
+using HospitalToday.Domain.Person;
 using HospitalToday.Repository;
 using System;
 using System.Collections.Generic;
@@ -10,21 +11,21 @@ namespace HospitalToday.Logic
 {
     class PersonService : IService<Person>
     {
-        IRepository<Person> PersonRep;
+        IRepository<Person> personRep;
 
         public PersonService()
         {
-            PersonRep = new PersonRepository();
+            personRep = PersonRepository.GetRepository();
         }
 
         public void Add(Person item)
         {
-            PersonRep.Create(item);
+            personRep.Create(item);
         }
 
         public void Remove(Person item)
         {
-            PersonRep.Delete(item.Id);
+            personRep.Delete(item.Id);
         }
     }
 }
