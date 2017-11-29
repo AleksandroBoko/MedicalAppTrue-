@@ -4,11 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace HospitalToday.Domain
+namespace HospitalToday.Domain.Person.Doctor
 {
-    interface IDoctorService
+    class Doctor:Person
     {
-        void Add(Person person);
-        void Remove(Person person);
+        public string Qualification { get; set; }
     }
 }

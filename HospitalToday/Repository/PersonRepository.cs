@@ -1,48 +1,64 @@
-﻿using System;
+﻿using HospitalToday.Domain;
+using HospitalToday.Domain.Person;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace HospitalToday.Domain
+namespace HospitalToday.Repository
 {
     class PersonRepository : IRepository<Person>
     {
-        List<Person> Persons;
+        private static IRepository<Person> personRep;
+        private readonly List<Person> persons;
 
-        public PersonRepository()
+        private PersonRepository()
         {
-            Persons = new List<Person>();
+            persons = new List<Person>();
+        }
+
+        public static IRepository<Person> GetRepository()
+        {
+            if (personRep == null)
+            {
+                personRep = new PersonRepository();
+            }
+
+            return personRep;
         }
 
         public void Create(Person item)
         {
-            Persons.Add(item);
+            persons.Add(item);
         }
 
         public void Delete(int id)
         {
-            Persons.Remove(Persons.Where(p => p.Id == id).First());
+            if (persons.Any(x => x.Id == id))
+            {
+                persons.Remove(persons.FirstOrDefault(x => x.Id == id));
+            }
         }
 
         public Person GetItem(int id)
         {
-            return Persons.Where(p => p.Id == id).First();
+            return persons.FirstOrDefault(x => x.Id == id);
         }
 
         public List<Person> GetList()
         {
-            return Persons;
+            return persons;
         }
 
         public void Save()
         {
-            //TODO: Need to add code
+            throw new NotImplementedException();
         }
 
         public void Update(Person item)
         {
-            //TODO: Need to add code
+            throw new NotImplementedException();
         }
     }
 }

@@ -4,11 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace HospitalToday.Domain
+namespace HospitalToday.Domain.Medicine
 {
-    abstract class Medicine
+    abstract class MedicineFactory
     {
-        public int Id { get; set; }
-        public string Name {get; set;}
+        public abstract Medicine GetMedicine();
     }
 }

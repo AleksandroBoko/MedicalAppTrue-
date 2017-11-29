@@ -4,10 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace HospitalToday.Domain
+namespace HospitalToday.Domain.Medicine.Febrifuge
 {
-    class Doctor:Person
+    class Febrifuge : Medicine
     {
-        public string Qualification { get; set; }
+        public float Temperature { get; set; }
     }
 }

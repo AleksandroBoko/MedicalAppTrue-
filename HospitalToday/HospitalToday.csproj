@@ -43,21 +43,37 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Domain\Doctor.cs" />
-    <Compile Include="Domain\Medicine.cs" />
-    <Compile Include="Domain\Report.cs" />
-    <Compile Include="Logic\DoctorService.cs" />
-    <Compile Include="Logic\IDoctorService.cs" />
+    <Compile Include="Domain\Medicine\Analgetic\Analgetic.cs" />
+    <Compile Include="Domain\Medicine\Analgetic\AnalgeticFactory.cs" />
+    <Compile Include="Domain\Medicine\Antiseptic\Antiseptic.cs" />
+    <Compile Include="Domain\Medicine\Antiseptic\AntisepticFactory.cs" />
+    <Compile Include="Domain\Medicine\Febrifuge\Febrifuge.cs" />
+    <Compile Include="Domain\Medicine\Febrifuge\FebrifugeFactory.cs" />
+    <Compile Include="Domain\Medicine\MedicineFactory.cs" />
+    <Compile Include="Domain\Person\Doctor\Doctor.cs" />
+    <Compile Include="Domain\Person\Doctor\DoctorFactory.cs" />
+    <Compile Include="Domain\Medicine\Medicine.cs" />
+    <Compile Include="Domain\Person\Patient\PatientFactory.cs" />
+    <Compile Include="Domain\Person\PersonFactory.cs" />
+    <Compile Include="Domain\Report\Report.cs" />
+    <Compile Include="Initializer.cs" />
+    <Compile Include="Logic\PersonService.cs" />
+    <Compile Include="Logic\IService.cs" />
+    <Compile Include="Logic\MedicineService.cs" />
+    <Compile Include="Logic\ReportService.cs" />
+    <Compile Include="Repository\MedicineRepository.cs" />
     <Compile Include="Repository\PersonRepository.cs" />
     <Compile Include="Repository\IRepository.cs" />
-    <Compile Include="Domain\Patient.cs" />
-    <Compile Include="Domain\Person.cs" />
+    <Compile Include="Domain\Person\Patient\Patient.cs" />
+    <Compile Include="Domain\Person\Person.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Repository\ReportRepository.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
