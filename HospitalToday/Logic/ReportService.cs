@@ -10,7 +10,7 @@ namespace HospitalToday.Logic
 {
     class ReportService : IService<Report>
     {
-        IRepository<Report> reportRep;
+        private readonly IRepository<Report> reportRep;
 
         public ReportService()
         {

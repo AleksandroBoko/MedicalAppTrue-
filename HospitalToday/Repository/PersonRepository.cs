@@ -11,7 +11,7 @@ namespace HospitalToday.Repository
     class PersonRepository : IRepository<Person>
     {
         private static IRepository<Person> personRep;
-        private List<Person> persons;
+        private readonly List<Person> persons;
 
         private PersonRepository()
         {
@@ -21,7 +21,9 @@ namespace HospitalToday.Repository
         public static IRepository<Person> GetRepository()
         {
             if (personRep == null)
+            {
                 personRep = new PersonRepository();
+            }
 
             return personRep;
         }
@@ -33,12 +35,15 @@ namespace HospitalToday.Repository
 
         public void Delete(int id)
         {
-            persons.Remove(persons.FirstOrDefault(p => p.Id == id));
+            if (persons.Any(x => x.Id == id))
+            {
+                persons.Remove(persons.FirstOrDefault(x => x.Id == id));
+            }
         }
 
         public Person GetItem(int id)
         {
-            return persons.FirstOrDefault(p => p.Id == id);
+            return persons.FirstOrDefault(x => x.Id == id);
         }
 
         public List<Person> GetList()

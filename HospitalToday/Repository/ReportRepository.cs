@@ -9,8 +9,8 @@ namespace HospitalToday.Repository
 {
     class ReportRepository : IRepository<Report>
     {
-        private List<Report> reports;
         private static IRepository<Report> reportRep;
+        private readonly List<Report> reports;
 
         private ReportRepository()
         {
@@ -34,12 +34,15 @@ namespace HospitalToday.Repository
 
         public void Delete(int id)
         {
-            reports.Remove(reports.FirstOrDefault(n => n.Id == id));
+            if (reports.Any(x => x.Id == id))
+            {
+                reports.Remove(reports.FirstOrDefault(x => x.Id == id));
+            }
         }
 
         public Report GetItem(int id)
         {
-            return reports.FirstOrDefault(n => n.Id == id);
+            return reports.FirstOrDefault(x => x.Id == id);
         }
 
         public List<Report> GetList()

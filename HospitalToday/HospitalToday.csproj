@@ -43,6 +43,13 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Domain\Medicine\Analgetic\Analgetic.cs" />
+    <Compile Include="Domain\Medicine\Analgetic\AnalgeticFactory.cs" />
+    <Compile Include="Domain\Medicine\Antiseptic\Antiseptic.cs" />
+    <Compile Include="Domain\Medicine\Antiseptic\AntisepticFactory.cs" />
+    <Compile Include="Domain\Medicine\Febrifuge\Febrifuge.cs" />
+    <Compile Include="Domain\Medicine\Febrifuge\FebrifugeFactory.cs" />
+    <Compile Include="Domain\Medicine\MedicineFactory.cs" />
     <Compile Include="Domain\Person\Doctor\Doctor.cs" />
     <Compile Include="Domain\Person\Doctor\DoctorFactory.cs" />
     <Compile Include="Domain\Medicine\Medicine.cs" />
@@ -66,6 +73,7 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

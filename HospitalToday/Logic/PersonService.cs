@@ -11,7 +11,7 @@ namespace HospitalToday.Logic
 {
     class PersonService : IService<Person>
     {
-        IRepository<Person> personRep;
+        private readonly IRepository<Person> personRep;
 
         public PersonService()
         {

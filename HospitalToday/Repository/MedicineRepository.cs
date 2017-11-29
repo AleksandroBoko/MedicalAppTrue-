@@ -10,8 +10,8 @@ namespace HospitalToday.Repository
 {
     class MedicineRepository : IRepository<Medicine>
     {
-        private static IRepository<Medicine> medRep;
-        private List<Medicine> medicines;
+        private static IRepository<Medicine> medicineRep;
+        private readonly List<Medicine> medicines;
 
         private MedicineRepository()
         {
@@ -20,10 +20,12 @@ namespace HospitalToday.Repository
 
         public static IRepository<Medicine> GetRepository()
         {
-            if (medRep == null)
-                medRep = new MedicineRepository();
+            if (medicineRep == null)
+            {
+                medicineRep = new MedicineRepository();
+            }
 
-            return medRep;
+            return medicineRep;
         }
 
         public void Create(Medicine item)
@@ -33,16 +35,15 @@ namespace HospitalToday.Repository
 
         public void Delete(int id)
         {
-            var t = medicines.FirstOrDefault(m => m.Id == id);
-            if (t != null)
+            if (medicines.Any(x => x.Id == id))
             {
-                medicines.Remove(t);
+                medicines.Remove(medicines.FirstOrDefault(x => x.Id == id));
             }
         }
 
         public Medicine GetItem(int id)
         {
-            return medicines.FirstOrDefault(m => m.Id == id);
+            return medicines.FirstOrDefault(x => x.Id == id);
         }
 
         public List<Medicine> GetList()

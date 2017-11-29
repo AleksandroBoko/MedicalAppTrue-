@@ -16,12 +16,17 @@ namespace HospitalToday
         static IService<Person> Persons;
         static IService<Report> Reports;
 
-
+        
         public static void InitServices()
         {
             MedService = new MedicineService();
             Persons = new PersonService();
             Reports = new ReportService();
         }
+
+        public static void AddingPersons()
+        {
+            Persons.Add()
+        } 
     }
 }
