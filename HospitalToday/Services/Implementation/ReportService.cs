@@ -33,5 +33,10 @@ namespace HospitalToday.Services.Implementation
         {
             return reportRep.GetList();
         }
+
+        public Report GetItemById(int id)
+        {
+            return reportRep.GetItem(id);
+        }           
     }
 }
