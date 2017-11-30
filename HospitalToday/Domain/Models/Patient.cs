@@ -1,10 +1,11 @@
-﻿using System;
+﻿using HospitalToday.Common.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace HospitalToday.Domain.Person.Patient
+namespace HospitalToday.Domain.Models
 {
     class Patient : Person
     {

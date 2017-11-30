@@ -1,10 +1,12 @@
-﻿using System;
+﻿using HospitalToday.Common.Models;
+using HospitalToday.Domain.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace HospitalToday.Domain.Medicine.Antiseptic
+namespace HospitalToday.Domain.Factory.Implementation
 {
     class AntisepticFactory : MedicineFactory
     {

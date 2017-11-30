@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace HospitalToday.Domain.Medicine
+namespace HospitalToday.Common.Models
 {
     abstract class Medicine
     {

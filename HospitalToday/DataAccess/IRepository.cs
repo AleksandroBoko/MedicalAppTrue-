@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace HospitalToday.Repository
+namespace HospitalToday.DataAccess
 {
     interface IRepository<T> where T : class
     {

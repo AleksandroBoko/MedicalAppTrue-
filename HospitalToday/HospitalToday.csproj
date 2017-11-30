@@ -43,32 +43,32 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Domain\Medicine\Analgetic\Analgetic.cs" />
-    <Compile Include="Domain\Medicine\Analgetic\AnalgeticFactory.cs" />
-    <Compile Include="Domain\Medicine\Antiseptic\Antiseptic.cs" />
-    <Compile Include="Domain\Medicine\Antiseptic\AntisepticFactory.cs" />
-    <Compile Include="Domain\Medicine\Febrifuge\Febrifuge.cs" />
-    <Compile Include="Domain\Medicine\Febrifuge\FebrifugeFactory.cs" />
-    <Compile Include="Domain\Medicine\MedicineFactory.cs" />
-    <Compile Include="Domain\Person\Doctor\Doctor.cs" />
-    <Compile Include="Domain\Person\Doctor\DoctorFactory.cs" />
-    <Compile Include="Domain\Medicine\Medicine.cs" />
-    <Compile Include="Domain\Person\Patient\PatientFactory.cs" />
-    <Compile Include="Domain\Person\PersonFactory.cs" />
-    <Compile Include="Domain\Report\Report.cs" />
+    <Compile Include="Domain\Models\Analgetic.cs" />
+    <Compile Include="Domain\Factory\Implementation\AnalgeticFactory.cs" />
+    <Compile Include="Domain\Models\Antiseptic.cs" />
+    <Compile Include="Domain\Factory\Implementation\AntisepticFactory.cs" />
+    <Compile Include="Domain\Models\Febrifuge.cs" />
+    <Compile Include="Domain\Factory\Implementation\FebrifugeFactory.cs" />
+    <Compile Include="Domain\Factory\MedicineFactory.cs" />
+    <Compile Include="Domain\Models\Doctor.cs" />
+    <Compile Include="Domain\Factory\Implementation\DoctorFactory.cs" />
+    <Compile Include="Common\Models\Medicine.cs" />
+    <Compile Include="Domain\Factory\Implementation\PatientFactory.cs" />
+    <Compile Include="Domain\Factory\PersonFactory.cs" />
+    <Compile Include="Domain\Models\Report.cs" />
     <Compile Include="Initializer.cs" />
-    <Compile Include="Logic\PersonService.cs" />
-    <Compile Include="Logic\IService.cs" />
-    <Compile Include="Logic\MedicineService.cs" />
-    <Compile Include="Logic\ReportService.cs" />
-    <Compile Include="Repository\MedicineRepository.cs" />
-    <Compile Include="Repository\PersonRepository.cs" />
-    <Compile Include="Repository\IRepository.cs" />
-    <Compile Include="Domain\Person\Patient\Patient.cs" />
-    <Compile Include="Domain\Person\Person.cs" />
+    <Compile Include="Services\Implementation\PersonService.cs" />
+    <Compile Include="Services\IService.cs" />
+    <Compile Include="Services\Implementation\MedicineService.cs" />
+    <Compile Include="Services\Implementation\ReportService.cs" />
+    <Compile Include="DataAccess\Implementation\MedicineRepository.cs" />
+    <Compile Include="DataAccess\Implementation\PersonRepository.cs" />
+    <Compile Include="DataAccess\IRepository.cs" />
+    <Compile Include="Domain\Models\Patient.cs" />
+    <Compile Include="Common\Models\Person.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Repository\ReportRepository.cs" />
+    <Compile Include="DataAccess\Implementation\ReportRepository.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

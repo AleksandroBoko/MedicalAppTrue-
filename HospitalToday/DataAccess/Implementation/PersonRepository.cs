@@ -1,12 +1,12 @@
-﻿using HospitalToday.Domain;
-using HospitalToday.Domain.Person;
+﻿using HospitalToday.Common.Models;
+using HospitalToday.Domain;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace HospitalToday.Repository
+namespace HospitalToday.DataAccess.Implementation
 {
     class PersonRepository : IRepository<Person>
     {
