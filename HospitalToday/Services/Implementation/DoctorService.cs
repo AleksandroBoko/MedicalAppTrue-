@@ -1,20 +1,19 @@
 ﻿using HospitalToday.Common.Models;
 using HospitalToday.DataAccess;
 using HospitalToday.DataAccess.Implementation;
-using HospitalToday.Domain;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace HospitalToday.Logic
+namespace HospitalToday.Services.Implementation
 {
-    class PersonService : IService<Person>
+    class DoctorService : IService<Person>
     {
         private readonly IRepository<Person> personRep;
 
-        public PersonService()
+        public DoctorService()
         {
             personRep = PersonRepository.GetRepository();
         }
@@ -34,4 +33,5 @@ namespace HospitalToday.Logic
             return personRep.GetList();
         }
     }
+
 }

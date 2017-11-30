@@ -8,7 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace HospitalToday.Logic
+namespace HospitalToday.Services.Implementation
 {
     class MedicineService : IService<Medicine>
     {

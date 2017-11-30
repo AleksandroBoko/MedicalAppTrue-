@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace HospitalToday.Logic
+namespace HospitalToday.Services
 {
     interface IService<T> where T : class
     {
