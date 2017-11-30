@@ -1,8 +1,8 @@
-﻿using HospitalToday.Domain;
-using HospitalToday.Domain.Medicine;
-using HospitalToday.Domain.Person;
-using HospitalToday.Domain.Person.Doctor;
-using HospitalToday.Domain.Person.Patient;
+﻿using HospitalToday.Common.Models;
+using HospitalToday.Domaim.Factory.Implementation;
+using HospitalToday.Domain.Factory;
+using HospitalToday.Domain.Factory.Implementation;
+using HospitalToday.Domain.Models;
 using HospitalToday.Logic;
 using System;
 using System.Collections.Generic;

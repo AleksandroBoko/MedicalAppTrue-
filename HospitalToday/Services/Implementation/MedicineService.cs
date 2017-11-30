@@ -1,6 +1,7 @@
-﻿using HospitalToday.Domain;
-using HospitalToday.Domain.Medicine;
-using HospitalToday.Repository;
+﻿using HospitalToday.Common.Models;
+using HospitalToday.DataAccess;
+using HospitalToday.DataAccess.Implementation;
+using HospitalToday.Domain;
 using System;
 using System.Collections.Generic;
 using System.Linq;

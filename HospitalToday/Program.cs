@@ -1,6 +1,4 @@
 ﻿using HospitalToday.Domain;
-using HospitalToday.Domain.Medicine;
-using HospitalToday.Domain.Person;
 using HospitalToday.Logic;
 using System;
 using System.Collections.Generic;
