@@ -1,6 +1,7 @@
 ﻿using HospitalToday.Common.Models;
 using HospitalToday.DataAccess;
 using HospitalToday.DataAccess.Implementation;
+using HospitalToday.Domain.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -30,7 +31,8 @@ namespace HospitalToday.Services.Implementation
 
         public List<Person> GetList()
         {
-            return personRep.GetList();
+            var persons = personRep.GetList().Where(x => x is Patient);
+            return persons != null ? persons.ToList() : null;
         }
     }
 }
