@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace HospitalToday.Domaim.Factory.Implementation
+namespace HospitalToday.Domain.Factory.Implementation
 {
     class DoctorFactory : PersonFactory
     {

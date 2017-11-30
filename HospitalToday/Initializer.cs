@@ -1,9 +1,9 @@
 ﻿using HospitalToday.Common.Models;
-using HospitalToday.Domaim.Factory.Implementation;
 using HospitalToday.Domain.Factory;
 using HospitalToday.Domain.Factory.Implementation;
 using HospitalToday.Domain.Models;
-using HospitalToday.Logic;
+using HospitalToday.Services;
+using HospitalToday.Services.Implementation;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -18,14 +18,15 @@ namespace HospitalToday
         static int personId { get { return personCounter++; } }
 
         static IService<Medicine> medService;
-        static IService<Person> persons;
+        static IService<Person> doctors;
+        static IService<Person> patients;
         static IService<Report> reports;
-
 
         public static void InitServices()
         {
             medService = new MedicineService();
-            persons = new PersonService();
+            patients = new PatientService();
+            doctors = new DoctorService();
             reports = new ReportService();
         }
 
@@ -36,11 +37,11 @@ namespace HospitalToday
 
             var docDantist = doctorFactory.GetPerson();
             InitDoctor(docDantist, personId, "Ivan", "Bo", "Junior");
-            persons.Add(docDantist);
+            doctors.Add(docDantist);
 
             var docSurgeon = doctorFactory.GetPerson();
             InitDoctor(docSurgeon, personId, "Alex", "Tor", "Middle");
-            persons.Add(docSurgeon);
+            doctors.Add(docSurgeon);
 
             var n = 10;
             for (var i = 0; i < 10; i++)
@@ -55,16 +56,16 @@ namespace HospitalToday
                     InitPatient(patient, personId, "Name" + i, "LastName" + i, docSurgeon.Id, i + 10);
                 }
 
-                persons.Add(patient);
+                patients.Add(patient);
             }
         }
 
         public static void ShowDoctors()
         {
-            if (persons == null)
+            if (doctors == null)
                 return;
 
-            foreach(var person in persons.GetList())
+            foreach(var person in doctors.GetList())
             {
                 var doctor = person as Doctor;
                 if (doctor != null)
@@ -76,10 +77,10 @@ namespace HospitalToday
 
         public static void ShowPatients()
         {
-            if (persons == null)
+            if (patients == null)
                 return;
 
-            foreach (var person in persons.GetList())
+            foreach (var person in patients.GetList())
             {
                 var patient = person as Patient;
                 if (patient != null)
