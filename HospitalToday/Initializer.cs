@@ -113,7 +113,5 @@ namespace HospitalToday
             curPerson.DoctorId = doctorId;
             curPerson.Age = age;
         }
-
-        
     }
 }
