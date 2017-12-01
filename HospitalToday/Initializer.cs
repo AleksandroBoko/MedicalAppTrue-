@@ -17,10 +17,10 @@ namespace HospitalToday
         static int personCounter = 1;
         static int personId { get { return personCounter++; } }
 
-        static IService<Medicine> medService;
-        static IService<Person> doctors;
-        static IService<Person> patients;
-        static IService<Report> reports;
+        public static IService<Medicine> medService;
+        public static IService<Person> doctors;
+        public static IService<Person> patients;
+        public static IService<Report> reports;
 
         public static void InitServices()
         {
@@ -65,7 +65,7 @@ namespace HospitalToday
             if (doctors == null)
                 return;
 
-            foreach(var person in doctors.GetList())
+            foreach (var person in doctors.GetList())
             {
                 var doctor = person as Doctor;
                 if (doctor != null)
@@ -113,6 +113,77 @@ namespace HospitalToday
             curPerson.LastName = lastName;
             curPerson.DoctorId = doctorId;
             curPerson.Age = age;
+        }
+
+        public static void AddingMedicine()
+        {
+            var analgeticFactory = new AnalgeticFactory();
+            var antisepticFactory = new AntisepticFactory();
+            var febrifugeFactory = new FebrifugeFactory();
+
+            var n = 10;
+            for (int i = 0; i < n; i++)
+            {
+                Medicine med;
+                if (i % 3 == 0)
+                {
+                    med = analgeticFactory.GetMedicine();
+                }
+                else if (i % 2 == 0)
+                {
+                    med = antisepticFactory.GetMedicine();
+                }
+                else
+                {
+                    med = febrifugeFactory.GetMedicine();
+                }
+
+                InitMedicine(med, i);
+                medService.Add(med);
+            }
+        }
+
+        private static void InitMedicine(Medicine medicine, int id)
+        {
+            medicine.Id = id;
+            medicine.Name = medicine.ToString() + " " + id;
+            if (medicine is Analgetic)
+            {
+                ((Analgetic)medicine).TypePain = "Hard";
+            }
+            else if (medicine is Antiseptic)
+            {
+                ((Antiseptic)medicine).TypeInjury = "Cut";
+            }
+            else if (medicine is Febrifuge)
+            {
+                ((Febrifuge)medicine).Temperature = 39.1f;
+            }
+        }
+
+        public static void ShowMedicine()
+        {
+            if (medService == null)
+                return;
+
+            foreach (var med in medService.GetList())
+            {
+                if (med is Analgetic)
+                {
+                    var curMed = med as Analgetic;
+                    Console.WriteLine($"{curMed.Id} - {curMed.Name} - {curMed.TypePain}");
+                }
+                else if (med is Antiseptic)
+                {
+                    var curMed = med as Antiseptic;
+                    Console.WriteLine($"{curMed.Id} - {curMed.Name} - {curMed.TypeInjury}");
+                }
+                else if (med is Febrifuge)
+                {
+                    var curMed = med as Febrifuge;
+                    Console.WriteLine($"{curMed.Id} - {curMed.Name} - {curMed.Temperature}");
+                }
+            }
         }
     }
 }
