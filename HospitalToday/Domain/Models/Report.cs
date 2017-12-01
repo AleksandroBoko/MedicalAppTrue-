@@ -9,10 +9,17 @@ namespace HospitalToday.Domain.Models
 {
     class Report
     {
-        public int Id { get; set; }
+        static int counterId { get; set; } = 0;
+
+        public int Id { get; private set; }
         public DateTime Date { get; set; }
         public int DoctorId { get; set; }
         public int PatientId { get; set; }
         public List<Medicine> Medicines {get; set;}
+
+        public Report()
+        {
+            Id = counterId++;
+        }
     }
 }

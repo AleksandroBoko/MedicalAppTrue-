@@ -33,5 +33,10 @@ namespace HospitalToday.Services.Implementation
         {
             return medicineRep.GetList();
         }
+
+        public Medicine GetItemById(int id)
+        {
+            return medicineRep.GetItem(id);
+        }
     }
 }
