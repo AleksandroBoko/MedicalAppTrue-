@@ -12,5 +12,6 @@ namespace HospitalToday.Services
         void Add(T item);
         void Remove(T item);
         List<T> GetList();
+        T GetItemById(int id);
     }
 }

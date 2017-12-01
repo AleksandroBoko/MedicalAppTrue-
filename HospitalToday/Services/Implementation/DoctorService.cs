@@ -5,8 +5,6 @@ using HospitalToday.Domain.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace HospitalToday.Services.Implementation
 {
@@ -51,6 +49,11 @@ namespace HospitalToday.Services.Implementation
                 Date = currentDate,
                 Medicines = medicines
             };
+        }
+
+        public Person GetItemById(int id)
+        {
+            return personRep.GetItem(id);
         }
     }
 }

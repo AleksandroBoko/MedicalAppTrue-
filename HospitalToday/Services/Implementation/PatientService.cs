@@ -34,5 +34,10 @@ namespace HospitalToday.Services.Implementation
             var persons = personRep.GetList().Where(x => x is Patient);
             return persons != null ? persons.ToList() : null;
         }
+
+        public Person GetItemById(int id)
+        {
+            return personRep.GetItem(id);
+        }
     }
 }
