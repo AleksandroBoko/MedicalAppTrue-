@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace HospitalToday.Services.Implementation
 {
-    class MedicineService : IService<Medicine>
+    class MedicineService : IMedicineService
     {
         private readonly IRepository<Medicine> medicineRep;
 
@@ -29,7 +29,7 @@ namespace HospitalToday.Services.Implementation
             medicineRep.Delete(item.Id);
         }
 
-        public List<Medicine> GetList()
+        public IList<Medicine> GetList()
         {
             return medicineRep.GetList();
         }

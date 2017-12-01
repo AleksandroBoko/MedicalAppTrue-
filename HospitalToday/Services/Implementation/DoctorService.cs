@@ -8,13 +8,15 @@ using System.Linq;
 
 namespace HospitalToday.Services.Implementation
 {
-    class DoctorService : IService<Person>
+    class DoctorService : IDoctorService
     {
         private readonly IRepository<Person> personRep;
+        private readonly IService<Report> reportService;
 
         public DoctorService()
         {
             personRep = PersonRepository.GetRepository();
+            reportService = new ReportService();
         }
 
         public void Add(Person item)
@@ -27,33 +29,40 @@ namespace HospitalToday.Services.Implementation
             personRep.Delete(item.Id);
         }
 
-        public List<Person> GetList()
+        public IList<Person> GetList()
         {
             var persons = personRep.GetList().Where(x => x is Doctor);
-            return persons != null ? persons.ToList() : null;
-        }
-
-        public Report GetReport(Person doctor, Person patient, List<Medicine> medicines, DateTime date)
-        {
-            if (doctor == null || patient == null)
-            {
-                return null;
-            }
-
-            DateTime currentDate = date == null ? DateTime.Now : date;
-
-            return new Report()
-            {
-                DoctorId = doctor.Id,
-                PatientId = patient.Id,
-                Date = currentDate,
-                Medicines = medicines
-            };
+            return persons.ToList();
         }
 
         public Person GetItemById(int id)
         {
             return personRep.GetItem(id);
         }
+
+        public int CreateReport(Person doctor, Person patient, List<Medicine> medicines, DateTime? date)
+        {
+            var resultId = -1;
+            if (doctor == null || patient == null)
+            {
+                return resultId;
+            }
+
+            DateTime currentDate = date ?? DateTime.Now;
+
+            var report = new Report()
+            {
+                DoctorId = doctor.Id,
+                PatientId = patient.Id,
+                Date = currentDate,
+                Medicines = medicines
+            };
+
+
+            reportService.Add(report);
+
+            return report.Id;
+        }
+
     }
 }

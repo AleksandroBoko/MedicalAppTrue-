@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace HospitalToday.Services.Implementation
 {
-    class ReportService : IService<Report>
+    class ReportService : IReportService
     {
         private readonly IRepository<Report> reportRep;
 
@@ -29,7 +29,7 @@ namespace HospitalToday.Services.Implementation
             reportRep.Delete(item.Id);
         }
 
-        public List<Report> GetList()
+        public IList<Report> GetList()
         {
             return reportRep.GetList();
         }
@@ -37,6 +37,12 @@ namespace HospitalToday.Services.Implementation
         public Report GetItemById(int id)
         {
             return reportRep.GetItem(id);
-        }           
+        }
+
+        public IList<int> GetListId()
+        {
+            var reports = reportRep.GetList();
+            return reports.Select(x => x.Id).ToList();
+        }
     }
 }

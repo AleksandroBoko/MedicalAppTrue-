@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace HospitalToday.Services.Implementation
 {
-    class PatientService : IService<Person>
+    class PatientService : IPatientService
     {
         private readonly IRepository<Person> personRep;
 
@@ -29,7 +29,7 @@ namespace HospitalToday.Services.Implementation
             personRep.Delete(item.Id);
         }
 
-        public List<Person> GetList()
+        public IList<Person> GetList()
         {
             var persons = personRep.GetList().Where(x => x is Patient);
             return persons != null ? persons.ToList() : null;
