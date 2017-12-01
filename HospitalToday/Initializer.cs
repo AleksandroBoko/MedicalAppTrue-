@@ -14,20 +14,20 @@ namespace HospitalToday
 {
     static class Initializer
     {
-        static int personCounter = 1;
-        static int personId { get { return personCounter++; } }
+        private static int personCounter = 1;
+        private static int personId { get { return personCounter++; } }
 
-        public static IService<Medicine> medService;
-        public static IService<Person> doctors;
-        public static IService<Person> patients;
-        public static IService<Report> reports;
+        public static IService<Medicine> Medicines { get; set; }
+        public static IService<Person> Doctors { get; set; }
+        public static IService<Person> Patients { get; set; }
+        public static IService<Report> Reports { get; set; }
 
         public static void InitServices()
         {
-            medService = new MedicineService();
-            patients = new PatientService();
-            doctors = new DoctorService();
-            reports = new ReportService();
+            Medicines = new MedicineService();
+            Patients = new PatientService();
+            Doctors = new DoctorService();
+            Reports = new ReportService();
         }
 
         public static void AddingPersons()
@@ -37,11 +37,11 @@ namespace HospitalToday
 
             var docDantist = doctorFactory.GetPerson();
             InitDoctor(docDantist, personId, "Ivan", "Bo", "Junior");
-            doctors.Add(docDantist);
+            Doctors.Add(docDantist);
 
             var docSurgeon = doctorFactory.GetPerson();
             InitDoctor(docSurgeon, personId, "Alex", "Tor", "Middle");
-            doctors.Add(docSurgeon);
+            Doctors.Add(docSurgeon);
 
             var n = 10;
             for (var i = 0; i < 10; i++)
@@ -56,16 +56,16 @@ namespace HospitalToday
                     InitPatient(patient, personId, "Name" + i, "LastName" + i, docSurgeon.Id, i + 10);
                 }
 
-                patients.Add(patient);
+                Patients.Add(patient);
             }
         }
 
         public static void ShowDoctors()
         {
-            if (doctors == null)
+            if (Doctors == null)
                 return;
 
-            foreach (var person in doctors.GetList())
+            foreach (var person in Doctors.GetList())
             {
                 var doctor = person as Doctor;
                 if (doctor != null)
@@ -77,10 +77,10 @@ namespace HospitalToday
 
         public static void ShowPatients()
         {
-            if (patients == null)
+            if (Patients == null)
                 return;
 
-            foreach (var person in patients.GetList())
+            foreach (var person in Patients.GetList())
             {
                 var patient = person as Patient;
                 if (patient != null)
@@ -139,7 +139,7 @@ namespace HospitalToday
                 }
 
                 InitMedicine(med, i);
-                medService.Add(med);
+                Medicines.Add(med);
             }
         }
 
@@ -163,10 +163,10 @@ namespace HospitalToday
 
         public static void ShowMedicine()
         {
-            if (medService == null)
+            if (Medicines == null)
                 return;
 
-            foreach (var med in medService.GetList())
+            foreach (var med in Medicines.GetList())
             {
                 if (med is Analgetic)
                 {
