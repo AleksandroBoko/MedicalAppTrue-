@@ -14,34 +14,47 @@ namespace HospitalToday
 {
     static class Initializer
     {
+        static Initializer()
+        {
+            doctorFactory = new DoctorFactory();
+            patientFactory = new PatientFactory();
+            analgeticFactory = new AnalgeticFactory();
+            antisepticFactory = new AntisepticFactory();
+            febrifugeFactory = new FebrifugeFactory();
+        }
+
         private static int personCounter = 1;
         private static int personId { get { return personCounter++; } }
 
-        public static IService<Medicine> Medicines { get; set; }
-        public static IService<Person> Doctors { get; set; }
-        public static IService<Person> Patients { get; set; }
-        public static IService<Report> Reports { get; set; }
+        private static IService<Medicine> medicines;
+        private static IService<Person> doctors;
+        private static IService<Person> patients;
+        private static IService<Report> reports;
 
-        public static void InitServices()
+        private static PersonFactory doctorFactory;
+        private static PersonFactory patientFactory;
+        private static MedicineFactory analgeticFactory;
+        private static MedicineFactory antisepticFactory;
+        private static MedicineFactory febrifugeFactory;
+
+        public static void InitServices(IService<Medicine> medicines, IService<Person> doctors,
+                                        IService<Person> patients, IService<Report> reports)
         {
-            Medicines = new MedicineService();
-            Patients = new PatientService();
-            Doctors = new DoctorService();
-            Reports = new ReportService();
+            Initializer.medicines = medicines ?? new MedicineService();
+            Initializer.patients = doctors ?? new PatientService();
+            Initializer.doctors = patients ?? new DoctorService();
+            Initializer.reports = reports ?? new ReportService();
         }
 
         public static void AddingPersons()
         {
-            PersonFactory doctorFactory = new DoctorFactory();
-            PersonFactory patientFactory = new PatientFactory();
-
             var docDantist = doctorFactory.GetPerson();
             InitDoctor(docDantist, personId, "Ivan", "Bo", "Junior");
-            Doctors.Add(docDantist);
+            doctors.Add(docDantist);
 
             var docSurgeon = doctorFactory.GetPerson();
             InitDoctor(docSurgeon, personId, "Alex", "Tor", "Middle");
-            Doctors.Add(docSurgeon);
+            doctors.Add(docSurgeon);
 
             var n = 10;
             for (var i = 0; i < 10; i++)
@@ -56,16 +69,21 @@ namespace HospitalToday
                     InitPatient(patient, personId, "Name" + i, "LastName" + i, docSurgeon.Id, i + 10);
                 }
 
-                Patients.Add(patient);
+                patients.Add(patient);
             }
         }
 
         public static void ShowDoctors()
         {
-            if (Doctors == null)
+            if (Initializer.doctors == null)
                 return;
 
-            foreach (var person in Doctors.GetList())
+            var doctors = Initializer.doctors.GetList();
+
+            if (doctors == null)
+                return;
+
+            foreach (var person in doctors)
             {
                 var doctor = person as Doctor;
                 if (doctor != null)
@@ -77,10 +95,15 @@ namespace HospitalToday
 
         public static void ShowPatients()
         {
-            if (Patients == null)
+            if (Initializer.patients == null)
                 return;
 
-            foreach (var person in Patients.GetList())
+            var patients = Initializer.patients.GetList();
+
+            if (patients == null)
+                return;
+
+            foreach (var person in Initializer.patients.GetList())
             {
                 var patient = person as Patient;
                 if (patient != null)
@@ -117,19 +140,15 @@ namespace HospitalToday
 
         public static void AddingMedicine()
         {
-            var analgeticFactory = new AnalgeticFactory();
-            var antisepticFactory = new AntisepticFactory();
-            var febrifugeFactory = new FebrifugeFactory();
-
             var n = 10;
-            for (int i = 0; i < n; i++)
+            for (int id = 0; id < n; id++)
             {
                 Medicine med;
-                if (i % 3 == 0)
+                if (id % 3 == 0)
                 {
                     med = analgeticFactory.GetMedicine();
                 }
-                else if (i % 2 == 0)
+                else if (id % 2 == 0)
                 {
                     med = antisepticFactory.GetMedicine();
                 }
@@ -138,35 +157,38 @@ namespace HospitalToday
                     med = febrifugeFactory.GetMedicine();
                 }
 
-                InitMedicine(med, i);
-                Medicines.Add(med);
+                InitMedicine(id, med);
+                medicines.Add(med);
             }
         }
 
-        private static void InitMedicine(Medicine medicine, int id)
+        private static void InitMedicine(int id, Medicine medicine)
         {
             medicine.Id = id;
             medicine.Name = medicine.ToString() + " " + id;
             if (medicine is Analgetic)
             {
-                ((Analgetic)medicine).TypePain = "Hard";
+                var curMed = medicine as Analgetic;
+                curMed.TypePain = "Hard";
             }
             else if (medicine is Antiseptic)
             {
-                ((Antiseptic)medicine).TypeInjury = "Cut";
+                var curMed = medicine as Antiseptic;
+                curMed.TypeInjury = "Cut";
             }
             else if (medicine is Febrifuge)
             {
-                ((Febrifuge)medicine).Temperature = 39.1f;
+                var curMed = medicine as Febrifuge;
+                curMed.Temperature = 39.1f;
             }
         }
 
         public static void ShowMedicine()
         {
-            if (Medicines == null)
+            if (medicines == null)
                 return;
 
-            foreach (var med in Medicines.GetList())
+            foreach (var med in medicines.GetList())
             {
                 if (med is Analgetic)
                 {

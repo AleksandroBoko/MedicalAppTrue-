@@ -1,15 +1,12 @@
 ﻿using HospitalToday.Common.Models;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace HospitalToday.Domain.Models
 {
     class Report
     {
-        static int counterId { get; set; }
+        private static int counterId;
 
         public int Id { get; private set; }
         public DateTime Date { get; set; }

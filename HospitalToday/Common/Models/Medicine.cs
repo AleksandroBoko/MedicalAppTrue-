@@ -11,6 +11,6 @@ namespace HospitalToday.Common.Models
         public int Id { get; set; }
         public string Name { get; set; }
         public double Cost { get; set; }
-        public string TypeUsing { get; set; }
+        public string UsingMethod { get; set; }
     }
 }
