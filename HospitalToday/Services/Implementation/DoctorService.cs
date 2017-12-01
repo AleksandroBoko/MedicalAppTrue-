@@ -10,14 +10,14 @@ namespace HospitalToday.Services.Implementation
 {
     class DoctorService : IDoctorService
     {
-        private readonly IRepository<Person> personRep;
-        private readonly IService<Report> reportService;
-
         public DoctorService()
         {
             personRep = PersonRepository.GetRepository();
             reportService = new ReportService();
         }
+
+        private readonly IRepository<Person> personRep;
+        private readonly IService<Report> reportService;
 
         public void Add(Person item)
         {
@@ -31,8 +31,7 @@ namespace HospitalToday.Services.Implementation
 
         public IList<Person> GetList()
         {
-            var persons = personRep.GetList().Where(x => x is Doctor);
-            return persons.ToList();
+            return personRep.GetList().Where(x => x is Doctor).ToList();
         }
 
         public Person GetItemById(int id)
@@ -42,13 +41,12 @@ namespace HospitalToday.Services.Implementation
 
         public int CreateReport(Person doctor, Person patient, List<Medicine> medicines, DateTime? date)
         {
-            var resultId = -1;
             if (doctor == null || patient == null)
             {
-                return resultId;
+                throw new ArgumentException("One of the required parameters is null");
             }
 
-            DateTime currentDate = date ?? DateTime.Now;
+            var currentDate = date ?? DateTime.Now;
 
             var report = new Report()
             {
@@ -58,11 +56,9 @@ namespace HospitalToday.Services.Implementation
                 Medicines = medicines
             };
 
-
             reportService.Add(report);
 
             return report.Id;
         }
-
     }
 }

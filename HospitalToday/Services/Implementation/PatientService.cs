@@ -12,12 +12,12 @@ namespace HospitalToday.Services.Implementation
 {
     class PatientService : IPatientService
     {
-        private readonly IRepository<Person> personRep;
-
         public PatientService()
         {
             personRep = PersonRepository.GetRepository();
         }
+
+        private readonly IRepository<Person> personRep;
 
         public void Add(Person item)
         {
@@ -31,8 +31,7 @@ namespace HospitalToday.Services.Implementation
 
         public IList<Person> GetList()
         {
-            var persons = personRep.GetList().Where(x => x is Patient);
-            return persons != null ? persons.ToList() : null;
+            return personRep.GetList().Where(x => x is Patient).ToList();
         }
 
         public Person GetItemById(int id)

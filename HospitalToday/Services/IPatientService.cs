@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace HospitalToday.Services
 {
-    interface IPatientService:IService<Person>
+    interface IPatientService : IService<Person>
     {
     }
 }

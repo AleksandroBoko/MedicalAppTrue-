@@ -12,12 +12,12 @@ namespace HospitalToday.Services.Implementation
 {
     class ReportService : IReportService
     {
-        private readonly IRepository<Report> reportRep;
-
         public ReportService()
         {
             reportRep = ReportRepository.GetRepository();
         }
+
+        private readonly IRepository<Report> reportRep;
 
         public void Add(Report item)
         {
@@ -41,8 +41,20 @@ namespace HospitalToday.Services.Implementation
 
         public IList<int> GetListId()
         {
-            var reports = reportRep.GetList();
-            return reports.Select(x => x.Id).ToList();
+            return reportRep.GetList().Select(x => x.Id).ToList();
+        }
+
+        public double GetReportTotalCost(int id)
+        {
+            var report = reportRep.GetItem(id);
+            if (report != null && report.Medicines != null)
+            {
+                return report.Medicines.Sum(x => x.Cost);
+            }
+            else
+            {
+                return -1;
+            }
         }
     }
 }

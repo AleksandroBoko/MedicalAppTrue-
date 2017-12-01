@@ -12,12 +12,12 @@ namespace HospitalToday.Services.Implementation
 {
     class MedicineService : IMedicineService
     {
-        private readonly IRepository<Medicine> medicineRep;
-
         public MedicineService()
         {
             medicineRep = MedicineRepository.GetRepository();
         }
+
+        private readonly IRepository<Medicine> medicineRep;
 
         public void Add(Medicine item)
         {

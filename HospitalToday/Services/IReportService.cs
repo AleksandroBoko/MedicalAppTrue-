@@ -7,8 +7,9 @@ using System.Threading.Tasks;
 
 namespace HospitalToday.Services
 {
-    interface IReportService:IService<Report>
+    interface IReportService : IService<Report>
     {
         IList<int> GetListId();
+        double GetReportTotalCost(int id);
     }
 }

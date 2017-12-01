@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace HospitalToday.Domain.Models
 {
-    class Doctor:Person
+    class Doctor : Person
     {
         public string Qualification { get; set; }
     }
