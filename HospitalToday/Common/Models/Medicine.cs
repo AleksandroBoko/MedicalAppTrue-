@@ -9,6 +9,8 @@ namespace HospitalToday.Common.Models
     abstract class Medicine
     {
         public int Id { get; set; }
-        public string Name {get; set;}
+        public string Name { get; set; }
+        public double Cost { get; set; }
+        public string UsingMethod { get; set; }
     }
 }
