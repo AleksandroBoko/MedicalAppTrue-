@@ -47,7 +47,7 @@ namespace HospitalToday.Services.Implementation
         public double GetReportTotalCost(int id)
         {
             var report = reportRep.GetItem(id);
-            if (report != null && report.Medicines.Any(x => x != null)) 
+            if (report != null && report.Medicines.Any()) 
             {
                 return report.Medicines.Sum(x => x.Cost);
             }
