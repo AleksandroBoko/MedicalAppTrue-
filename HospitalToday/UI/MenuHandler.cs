@@ -1,4 +1,5 @@
-﻿using HospitalToday.Common.Models;
+﻿using HospitalToday.Common;
+using HospitalToday.Common.Models;
 using HospitalToday.Domain.Models;
 using HospitalToday.Services;
 using System;
@@ -98,7 +99,7 @@ namespace HospitalToday.UI
                 if (person != null && person is Doctor)
                 {
                     var doctor = person as Doctor;
-                    Console.WriteLine($"{doctor.Id} {doctor.FirstName} {doctor.LastName} {doctor.Qualification}");
+                    Console.WriteLine(doctor.GetDoctorInfo());
                 }
             }
         }
@@ -112,7 +113,7 @@ namespace HospitalToday.UI
                 var doctor = person as Doctor;
                 if (doctor != null)
                 {
-                    Console.WriteLine($"{doctor.Id} {doctor.FirstName} {doctor.LastName} {doctor.Qualification}");
+                    Console.WriteLine(doctor.GetDoctorInfo());
                 }
             }
         }
@@ -194,7 +195,7 @@ namespace HospitalToday.UI
                 if (person != null && person is Patient)
                 {
                     var patient = person as Patient;
-                    Console.WriteLine($"{patient.Id} {patient.FirstName} {patient.LastName} {patient.Age} {patient.DoctorId}");
+                    Console.WriteLine(patient.GetPatientInfo());
                 }
             }
         }
@@ -208,7 +209,7 @@ namespace HospitalToday.UI
                 var patient = person as Patient;
                 if (patient != null)
                 {
-                    Console.WriteLine($"{patient.Id} {patient.FirstName} {patient.LastName} {patient.Age} {patient.DoctorId}");
+                    Console.WriteLine(patient.GetPatientInfo());
                 }
             }
         }
@@ -328,17 +329,17 @@ namespace HospitalToday.UI
                     if(medicine is Analgetic)
                     {
                         var med = medicine as Analgetic;
-                        Console.WriteLine($"{med.Id} {med.Name} {med.TypePain} {med.UsingMethod} {med.Cost}");
+                        Console.WriteLine(med.GetAnalgeticInfo());
                     }
                     else if(medicine is Antiseptic)
                     {
                         var med = medicine as Antiseptic;
-                        Console.WriteLine($"{med.Id} {med.Name} {med.TypeInjury} {med.UsingMethod} {med.Cost}");
+                        Console.WriteLine(med.GetAntisepticInfo());
                     }
                     else if(medicine is Febrifuge)
                     {
                         var med = medicine as Febrifuge;
-                        Console.WriteLine($"{med.Id} {med.Name} {med.UsingMethod} {med.Temperature} {med.Cost}"); 
+                        Console.WriteLine(med.GetFebrifugeInfo()); 
                     }
                 }
             }
@@ -357,17 +358,17 @@ namespace HospitalToday.UI
                 if (medicine is Analgetic)
                 {
                     var med = medicine as Analgetic;
-                    Console.WriteLine($"{med.Id} {med.Name} {med.TypePain} {med.UsingMethod} {med.Cost}");
+                    Console.WriteLine(med.GetAnalgeticInfo());
                 }
                 else if (medicine is Antiseptic)
                 {
                     var med = medicine as Antiseptic;
-                    Console.WriteLine($"{med.Id} {med.Name} {med.TypeInjury} {med.UsingMethod} {med.Cost}");
+                    Console.WriteLine(med.GetAntisepticInfo());
                 }
                 else if (medicine is Febrifuge)
                 {
                     var med = medicine as Febrifuge;
-                    Console.WriteLine($"{med.Id} {med.Name} {med.UsingMethod} {med.Temperature} {med.Cost}");
+                    Console.WriteLine(med.GetFebrifugeInfo());
                 }                                
             }
         }
