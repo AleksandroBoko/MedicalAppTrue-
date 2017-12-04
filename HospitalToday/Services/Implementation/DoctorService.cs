@@ -8,14 +8,16 @@ using System.Linq;
 
 namespace HospitalToday.Services.Implementation
 {
-    class DoctorService : IService<Person>
+    class DoctorService : IDoctorService
     {
-        private readonly IRepository<Person> personRep;
-
         public DoctorService()
         {
             personRep = PersonRepository.GetRepository();
+            reportService = new ReportService();
         }
+
+        private readonly IRepository<Person> personRep;
+        private readonly IService<Report> reportService;
 
         public void Add(Person item)
         {
@@ -27,33 +29,36 @@ namespace HospitalToday.Services.Implementation
             personRep.Delete(item.Id);
         }
 
-        public List<Person> GetList()
+        public IList<Person> GetList()
         {
-            var persons = personRep.GetList().Where(x => x is Doctor);
-            return persons != null ? persons.ToList() : null;
+            return personRep.GetList().Where(x => x is Doctor).ToList();
         }
 
-        public Report GetReport(Person doctor, Person patient, List<Medicine> medicines, DateTime date)
+        public Person GetItemById(int id)
+        {
+            return personRep.GetItem(id);
+        }
+
+        public int CreateReport(Person doctor, Person patient, List<Medicine> medicines, DateTime? date)
         {
             if (doctor == null || patient == null)
             {
-                return null;
+                throw new ArgumentException("One of the required parameters is null");
             }
 
-            DateTime currentDate = date == null ? DateTime.Now : date;
+            var currentDate = date ?? DateTime.Now;
 
-            return new Report()
+            var report = new Report()
             {
                 DoctorId = doctor.Id,
                 PatientId = patient.Id,
                 Date = currentDate,
                 Medicines = medicines
             };
-        }
 
-        public Person GetItemById(int id)
-        {
-            return personRep.GetItem(id);
+            reportService.Add(report);
+
+            return report.Id;
         }
     }
 }

@@ -10,14 +10,14 @@ using System.Threading.Tasks;
 
 namespace HospitalToday.Services.Implementation
 {
-    class ReportService : IService<Report>
+    class ReportService : IReportService
     {
-        private readonly IRepository<Report> reportRep;
-
         public ReportService()
         {
             reportRep = ReportRepository.GetRepository();
         }
+
+        private readonly IRepository<Report> reportRep;
 
         public void Add(Report item)
         {
@@ -29,7 +29,7 @@ namespace HospitalToday.Services.Implementation
             reportRep.Delete(item.Id);
         }
 
-        public List<Report> GetList()
+        public IList<Report> GetList()
         {
             return reportRep.GetList();
         }
@@ -37,6 +37,24 @@ namespace HospitalToday.Services.Implementation
         public Report GetItemById(int id)
         {
             return reportRep.GetItem(id);
-        }           
+        }
+
+        public IList<int> GetListId()
+        {
+            return reportRep.GetList().Select(x => x.Id).ToList();
+        }
+
+        public double GetReportTotalCost(int id)
+        {
+            var report = reportRep.GetItem(id);
+            if (report != null && report.Medicines.Any()) 
+            {
+                return report.Medicines.Sum(x => x.Cost);
+            }
+            else
+            {
+                return -1;
+            }
+        }
     }
 }

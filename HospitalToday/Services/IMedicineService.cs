@@ -5,10 +5,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace HospitalToday.Domain.Models
+namespace HospitalToday.Services
 {
-    class Doctor : Person
+    interface IMedicineService : IService<Medicine>
     {
-        public string Qualification { get; set; }
     }
 }
