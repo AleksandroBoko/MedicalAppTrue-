@@ -74,6 +74,9 @@
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="DataAccess\Implementation\ReportRepository.cs" />
+    <Compile Include="UI\MenuBuilder.cs" />
+    <Compile Include="UI\MenuData.cs" />
+    <Compile Include="UI\MenuHandler.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
