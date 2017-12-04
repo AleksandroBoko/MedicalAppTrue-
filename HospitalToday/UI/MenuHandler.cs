@@ -65,7 +65,7 @@ namespace HospitalToday.UI
             Console.WriteLine("Qualification:");
             var qualification = Console.ReadLine();
 
-            doctors.Add(new Doctor() { FirstName = firtsName, LastName = lastName, Id = 0, Qualification = qualification });
+            doctors.Add(new Doctor() { FirstName = firtsName, LastName = lastName, Id = doctors.GetMaxId()+1, Qualification = qualification });
         }
 
         private void RemoveDoctor()
@@ -99,8 +99,13 @@ namespace HospitalToday.UI
                 if (person != null && person is Doctor)
                 {
                     var doctor = person as Doctor;
+                    Console.Clear();
                     Console.WriteLine(doctor.GetDoctorInfo());
                 }
+            }
+            else
+            {
+                Console.WriteLine("Incorrect input!");
             }
         }
 
@@ -150,7 +155,7 @@ namespace HospitalToday.UI
                 result = int.TryParse(answer, out id);
                 if (result)
                 {
-                    doctors.Add(new Patient() { FirstName = firtsName, LastName = lastName, Id = 0, Age = age, DoctorId = id });
+                    patients.Add(new Patient() { FirstName = firtsName, LastName = lastName, Id = patients.GetMaxId()+1, Age = age, DoctorId = id });
                 }
                 else
                 {

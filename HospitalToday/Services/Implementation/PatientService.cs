@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace HospitalToday.Services.Implementation
 {
-    class PatientService : IPatientService
+    class PatientService : IPatientService, IPersonService
     {
         public PatientService()
         {
@@ -37,6 +37,12 @@ namespace HospitalToday.Services.Implementation
         public Person GetItemById(int id)
         {
             return personRep.GetItem(id);
+        }
+
+        public int GetMaxId()
+        {
+            var persons = personRep.GetList();
+            return persons.Any() ? persons.Max(x => x.Id) : 0;
         }
     }
 }
