@@ -43,6 +43,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Common\AnalgeticExtension.cs" />
+    <Compile Include="Common\AntisepticExtension.cs" />
+    <Compile Include="Common\FebrifugeExtension.cs" />
+    <Compile Include="Common\PatientExtension.cs" />
     <Compile Include="Domain\Models\Analgetic.cs" />
     <Compile Include="Domain\Factory\Implementation\AnalgeticFactory.cs" />
     <Compile Include="Domain\Models\Antiseptic.cs" />
@@ -62,6 +66,7 @@
     <Compile Include="Services\Implementation\DoctorService.cs" />
     <Compile Include="Services\Implementation\PatientService.cs" />
     <Compile Include="Services\IPatientService.cs" />
+    <Compile Include="Services\IPersonService.cs" />
     <Compile Include="Services\IReportService.cs" />
     <Compile Include="Services\IService.cs" />
     <Compile Include="Services\Implementation\MedicineService.cs" />
@@ -74,6 +79,10 @@
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="DataAccess\Implementation\ReportRepository.cs" />
+    <Compile Include="Common\DoctorExtension.cs" />
+    <Compile Include="UI\MenuBuilder.cs" />
+    <Compile Include="UI\MenuData.cs" />
+    <Compile Include="UI\MenuHandler.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

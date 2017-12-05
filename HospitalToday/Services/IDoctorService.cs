@@ -7,8 +7,9 @@ using System.Threading.Tasks;
 
 namespace HospitalToday.Services
 {
-    interface IDoctorService : IService<Person>
+    interface IDoctorService : IService<Person>, IPersonService
     {
         int CreateReport(Person doctor, Person patient, List<Medicine> medicines, DateTime? date);
+
     }
 }

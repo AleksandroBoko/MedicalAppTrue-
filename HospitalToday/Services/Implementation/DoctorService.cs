@@ -60,5 +60,11 @@ namespace HospitalToday.Services.Implementation
 
             return report.Id;
         }
+
+        public int GetMaxId()
+        {
+            var persons = personRep.GetList();
+            return persons.Any() ? persons.Max(x => x.Id) : 0;
+        }
     }
 }
