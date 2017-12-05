@@ -12,8 +12,13 @@ namespace HospitalToday.UI
 {
     class MenuHandler
     {
-        public MenuHandler(IMedicineService medicines, IDoctorService doctors,
-                           IPatientService patients, IReportService reports)
+        public MenuHandler
+        (
+            IMedicineService medicines,
+            IDoctorService doctors,
+            IPatientService patients,
+            IReportService reports
+        )
         {
             menuBuilder = new MenuBuilder();
             this.medicines = medicines;
@@ -22,23 +27,33 @@ namespace HospitalToday.UI
             this.reports = reports;
         }
 
-        private IMedicineService medicines;
-        private IDoctorService doctors;
-        private IPatientService patients;
-        private IReportService reports;
+        private readonly IMedicineService medicines;
+        private readonly IDoctorService doctors;
+        private readonly IPatientService patients;
+        private readonly IReportService reports;
 
-        private MenuBuilder menuBuilder;
+        private readonly MenuBuilder menuBuilder;
 
         public void MainMenuHandler()
         {
-            int result = menuBuilder.MainMenu();
+            var result = menuBuilder.MainMenu();
             switch (result)
             {
-                case 0: DoctorMenuHandler(menuBuilder.DoctorMenu()); break;
-                case 1: PatientMenuHandler(menuBuilder.PatientMenu()); break;
-                case 2: MedicineMenuHandler(menuBuilder.MedicineMenu()); break;
-                case 3: ReportMenuHandler(menuBuilder.ReportMenu()); break;
-                default: Console.WriteLine("Bye!"); break;
+                case 0:
+                    DoctorMenuHandler(menuBuilder.DoctorMenu());
+                    break;
+                case 1:
+                    PatientMenuHandler(menuBuilder.PatientMenu());
+                    break;
+                case 2:
+                    MedicineMenuHandler(menuBuilder.MedicineMenu());
+                    break;
+                case 3:
+                    ReportMenuHandler(menuBuilder.ReportMenu());
+                    break;
+                default:
+                    Console.WriteLine("Bye!");
+                    break;
             }
         }
 
@@ -46,10 +61,21 @@ namespace HospitalToday.UI
         {
             switch (req)
             {
-                case 0: AddDoctor(); break;
-                case 1: RemoveDoctor(); break;
-                case 2: GetDoctorById(); break;
-                case 3: GetAllDoctors(); break;
+                case 0:
+                    AddDoctor();
+                    break;
+                case 1:
+                    RemoveDoctor();
+                    break;
+                case 2:
+                    GetDoctorById();
+                    break;
+                case 3:
+                    GetAllDoctors();
+                    break;
+                default:
+                    Console.WriteLine("Incorrect point of the menu");
+                    break;
             }
 
             BackToMainMenu();
@@ -60,22 +86,31 @@ namespace HospitalToday.UI
             Console.Clear();
             Console.WriteLine("First Name:");
             var firtsName = Console.ReadLine();
+
             Console.WriteLine("Last Name:");
             var lastName = Console.ReadLine();
+
             Console.WriteLine("Qualification:");
             var qualification = Console.ReadLine();
 
-            doctors.Add(new Doctor() { FirstName = firtsName, LastName = lastName, Id = doctors.GetMaxId()+1, Qualification = qualification });
+            var id = doctors.GetMaxId() + 1;
+            doctors.Add(new Doctor()
+            {
+                FirstName = firtsName,
+                LastName = lastName,
+                Id = id, 
+                Qualification = qualification
+            });
         }
 
         private void RemoveDoctor()
         {
             Console.Clear();
-            Console.WriteLine();
             Console.WriteLine("Id:");
+
             int id;
             var answer = Console.ReadLine();
-            var result = int.TryParse(answer, out id);
+            var result = Int32.TryParse(answer, out id);
             if (result)
             {
                 var doctor = doctors.GetItemById(id);
@@ -90,9 +125,10 @@ namespace HospitalToday.UI
         {
             Console.Clear();
             Console.WriteLine("Id:");
+
             int id;
             var answer = Console.ReadLine();
-            var result = int.TryParse(answer, out id);
+            var result = Int32.TryParse(answer, out id);
             if (result)
             {
                 var person = doctors.GetItemById(id);
@@ -127,10 +163,21 @@ namespace HospitalToday.UI
         {
             switch (req)
             {
-                case 0: AddPatient(); break;
-                case 1: RemovePatient(); break;
-                case 2: GetPatientById(); break;
-                case 3: GetAllPatients(); break;
+                case 0:
+                    AddPatient();
+                    break;
+                case 1:
+                    RemovePatient();
+                    break;
+                case 2:
+                    GetPatientById();
+                    break;
+                case 3:
+                    GetAllPatients();
+                    break;
+                default:
+                    Console.WriteLine("Incorrect point of the menu");
+                    break;
             }
 
             BackToMainMenu();
@@ -141,21 +188,33 @@ namespace HospitalToday.UI
             Console.Clear();
             Console.WriteLine("First Name:");
             var firtsName = Console.ReadLine();
+
             Console.WriteLine("Last Name:");
             var lastName = Console.ReadLine();
+
             Console.WriteLine("Age:");
             var answer = Console.ReadLine();
+
             int age;
-            var result = int.TryParse(answer, out age);
+            var result = Int32.TryParse(answer, out age);
             if (result)
             {
                 Console.WriteLine("Doctor:");
                 answer = Console.ReadLine();
+
                 int id;
-                result = int.TryParse(answer, out id);
+                result = Int32.TryParse(answer, out id);
                 if (result)
                 {
-                    patients.Add(new Patient() { FirstName = firtsName, LastName = lastName, Id = patients.GetMaxId()+1, Age = age, DoctorId = id });
+                    var patientId = patients.GetMaxId() + 1;
+                    patients.Add(new Patient()
+                    {
+                        FirstName = firtsName,
+                        LastName = lastName,
+                        Id = patientId,
+                        Age = age,
+                        DoctorId = id
+                    });
                 }
                 else
                 {
@@ -171,11 +230,11 @@ namespace HospitalToday.UI
         private void RemovePatient()
         {
             Console.Clear();
-            Console.WriteLine();
             Console.WriteLine("Id:");
+
             int id;
             var answer = Console.ReadLine();
-            var result = int.TryParse(answer, out id);
+            var result = Int32.TryParse(answer, out id);
             if (result)
             {
                 var petient = patients.GetItemById(id);
@@ -189,11 +248,11 @@ namespace HospitalToday.UI
         private void GetPatientById()
         {
             Console.Clear();
-            Console.WriteLine();
             Console.WriteLine("Id:");
+
             int id;
             var answer = Console.ReadLine();
-            var result = int.TryParse(answer, out id);
+            var result = Int32.TryParse(answer, out id);
             if (result)
             {
                 var person = patients.GetItemById(id);
@@ -223,10 +282,21 @@ namespace HospitalToday.UI
         {
             switch (req)
             {
-                case 0: AddMedicine(); break;
-                case 1: RemoveMedicine(); break;
-                case 2: GetMedicineById(); break;
-                case 3: GetAllMedicines(); break;
+                case 0:
+                    AddMedicine();
+                    break;
+                case 1:
+                    RemoveMedicine();
+                    break;
+                case 2:
+                    GetMedicineById();
+                    break;
+                case 3:
+                    GetAllMedicines();
+                    break;
+                default:
+                    Console.WriteLine("Incorrect point of the menu");
+                    break;
             }
 
             BackToMainMenu();
@@ -236,9 +306,10 @@ namespace HospitalToday.UI
         {
             Console.Clear();
             Console.WriteLine("Type: Analgetic - 0, Antiseptic - 1, Febrifuge - 2");
+
             var typeMedic = Console.ReadLine();
             var med = InitConcreteMedicine(typeMedic);
-            if(med != null)
+            if (med != null)
             {
                 var meds = medicines.GetList();
                 med.Id = meds.Max(x => x.Id) + 1;
@@ -249,7 +320,7 @@ namespace HospitalToday.UI
                 Console.WriteLine("Cost");
                 double cost;
                 var answer = Console.ReadLine();
-                var result = double.TryParse(answer, out cost);
+                var result = Double.TryParse(answer, out cost);
                 med.Cost = result ? cost : 0;
 
                 Console.WriteLine("Method of using:");
@@ -262,48 +333,79 @@ namespace HospitalToday.UI
         private Medicine InitConcreteMedicine(string TypeMedicine)
         {
             Medicine med = null;
-            switch(TypeMedicine)
+            switch (TypeMedicine)
             {
                 case "0":
                     {
                         Console.WriteLine("Type of pain:");
-                        var answer = Console.ReadLine();
-                        med = new Analgetic() {TypePain = answer };
+                        med = CreateAnalgetic();
                         break;
                     }
                 case "1":
                     {
                         Console.WriteLine("Type of injury:");
-                        var answer = Console.ReadLine();
-                        med = new Antiseptic() { TypeInjury = answer};
+                        med = CreateAntiseptic();
                         break;
                     }
                 case "2":
                     {
                         Console.WriteLine("Temperature:");
-                        var answer = Console.ReadLine();
-                        float temp;
-                        var result = float.TryParse(answer, out temp);
-                        if (result)
-                        {
-                            med = new Febrifuge() { Temperature = temp };
-                        }
+                        med = CreateFebrifuge(med);
                         break;
                     }
-                default: Console.WriteLine("Incorrect input"); break;
+                default:
+                    {
+                        Console.WriteLine("Incorrect input");
+                        break;
+                    }
             }
 
-            return med; 
+            return med;
+        }
+
+        private Medicine CreateFebrifuge(Medicine med)
+        {
+            var answer = Console.ReadLine();
+            float temp;
+            var result = Single.TryParse(answer, out temp);
+
+            if (result)
+            {
+                return new Febrifuge() { Temperature = temp };
+            }
+            else
+            {
+                Console.WriteLine("Incorrect input!");
+                return null;
+            }
+        }
+
+        private Medicine CreateAntiseptic()
+        {
+            var answer = Console.ReadLine();
+            return new Antiseptic()
+            {
+                TypeInjury = answer
+            };
+        }
+
+        private Medicine CreateAnalgetic()
+        {
+            var answer = Console.ReadLine();
+            return new Analgetic()
+            {
+                TypePain = answer
+            };
         }
 
         private void RemoveMedicine()
         {
-            Console.Clear();
-            Console.WriteLine();
+            Console.Clear();           
             Console.WriteLine("Id:");
+
             int id;
             var answer = Console.ReadLine();
-            var result = int.TryParse(answer, out id);
+            var result = Int32.TryParse(answer, out id);
             if (result)
             {
                 var medicine = medicines.GetItemById(id);
@@ -320,31 +422,31 @@ namespace HospitalToday.UI
 
         private void GetMedicineById()
         {
-            Console.Clear();
-            Console.WriteLine();
+            Console.Clear();            
             Console.WriteLine("Id:");
+
             int id;
             var answer = Console.ReadLine();
-            var result = int.TryParse(answer, out id);
+            var result = Int32.TryParse(answer, out id);
             if (result)
             {
                 var medicine = medicines.GetItemById(id);
                 if (medicine != null)
                 {
-                    if(medicine is Analgetic)
+                    if (medicine is Analgetic)
                     {
                         var med = medicine as Analgetic;
                         Console.WriteLine(med.GetAnalgeticInfo());
                     }
-                    else if(medicine is Antiseptic)
+                    else if (medicine is Antiseptic)
                     {
                         var med = medicine as Antiseptic;
                         Console.WriteLine(med.GetAntisepticInfo());
                     }
-                    else if(medicine is Febrifuge)
+                    else if (medicine is Febrifuge)
                     {
                         var med = medicine as Febrifuge;
-                        Console.WriteLine(med.GetFebrifugeInfo()); 
+                        Console.WriteLine(med.GetFebrifugeInfo());
                     }
                 }
             }
@@ -374,7 +476,7 @@ namespace HospitalToday.UI
                 {
                     var med = medicine as Febrifuge;
                     Console.WriteLine(med.GetFebrifugeInfo());
-                }                                
+                }
             }
         }
 
@@ -382,11 +484,24 @@ namespace HospitalToday.UI
         {
             switch (req)
             {
-                case 0: AddReport(); break;
-                case 1: RemoveReport(); break;
-                case 2: GetReportById(); break;
-                case 3: GetReportTotalCost(); break;
-                case 4: GetAllReports(); break;
+                case 0:
+                    AddReport();
+                    break;
+                case 1:
+                    RemoveReport();
+                    break;
+                case 2:
+                    GetReportById();
+                    break;
+                case 3:
+                    GetReportTotalCost();
+                    break;
+                case 4:
+                    GetAllReports();
+                    break;
+                default:
+                    Console.WriteLine("Incorrect point of the menu");
+                    break;
             }
 
             BackToMainMenu();
@@ -396,9 +511,10 @@ namespace HospitalToday.UI
         {
             Console.Clear();
             Console.WriteLine("Id:");
+
             int id;
             var answer = Console.ReadLine();
-            var result = int.TryParse(answer, out id);
+            var result = Int32.TryParse(answer, out id);
             if (result)
             {
                 var report = reports.GetItemById(id);
@@ -406,7 +522,9 @@ namespace HospitalToday.UI
                 {
                     Console.WriteLine($"{report.Id} {report.Date}");
                     Console.WriteLine("The list of the medicines:");
+
                     report.Medicines.ForEach(x => Console.WriteLine($"{x.Name} - { x.Cost}"));
+
                     Console.WriteLine("Total cost:");
                     Console.WriteLine(reports.GetReportTotalCost(id));
                 }
@@ -421,39 +539,49 @@ namespace HospitalToday.UI
         {
             Console.Clear();
             Console.WriteLine("Doctor's id:");
+
             var answer = Console.ReadLine();
             int docId;
-            var result = int.TryParse(answer, out docId);
+            var result = Int32.TryParse(answer, out docId);
             if (!result)
             {
                 Console.WriteLine("Incorrect input!");
             }
+
             Person doctor = doctors.GetItemById(docId);
 
             answer = Console.ReadLine();
             int patId;
-            result = int.TryParse(answer, out patId);
+            result = Int32.TryParse(answer, out patId);
             if (!result)
             {
                 Console.WriteLine("Incorrect input!");
             }
+
             Person patient = patients.GetItemById(patId);
 
             var reportMedicines = GetListMedicines();
 
-            doctors.CreateReport(doctor, patient, reportMedicines, DateTime.Now);
+            try
+            {
+                doctors.CreateReport(doctor, patient, reportMedicines, DateTime.Now);
+            }
+            catch
+            {
+                Console.WriteLine("The patient or doctor wasn't set!");
+            }
 
         }
 
         private List<Medicine> GetListMedicines()
         {
-            List<Medicine> meds = new List<Medicine>();
+            var meds = new List<Medicine>();
             while (true)
             {
                 Console.WriteLine("Medicine id:");
                 var answer = Console.ReadLine();
                 int id;
-                var result = int.TryParse(answer, out id);
+                var result = Int32.TryParse(answer, out id);
                 if (!result)
                 {
                     Console.WriteLine("Incorrect input!");
@@ -468,7 +596,7 @@ namespace HospitalToday.UI
 
                 Console.WriteLine("Add one more Item? - press 0");
                 answer = Console.ReadLine();
-                if(answer != "0")
+                if (answer != "0")
                 {
                     break;
                 }
@@ -479,11 +607,11 @@ namespace HospitalToday.UI
         private void RemoveReport()
         {
             Console.Clear();
-            Console.WriteLine();
             Console.WriteLine("Id:");
+
             int id;
             var answer = Console.ReadLine();
-            var result = int.TryParse(answer, out id);
+            var result = Int32.TryParse(answer, out id);
             if (result)
             {
                 var report = reports.GetItemById(id);
@@ -500,7 +628,7 @@ namespace HospitalToday.UI
             Console.WriteLine("Id:");
             int id;
             var answer = Console.ReadLine();
-            var result = int.TryParse(answer, out id);
+            var result = Int32.TryParse(answer, out id);
             if (result)
             {
                 var report = reports.GetItemById(id);
@@ -508,7 +636,7 @@ namespace HospitalToday.UI
                 {
                     var doctor = doctors.GetItemById(report.DoctorId);
                     var patient = patients.GetItemById(report.PatientId);
-                    if (doctor == null || patient == null)
+                    if (doctor != null && patient != null)
                     {
                         Console.WriteLine($"{report.Id} {report.Date}");
                         Console.WriteLine($"{doctor.FirstName} {doctor.LastName}");
@@ -534,7 +662,7 @@ namespace HospitalToday.UI
                 {
                     var doctor = doctors.GetItemById(report.DoctorId);
                     var patient = patients.GetItemById(report.PatientId);
-                    if (doctor == null || patient == null)
+                    if (doctor != null && patient != null)
                     {
                         Console.WriteLine($"{report.Id} {report.Date}");
                         Console.WriteLine($"{doctor.FirstName} {doctor.LastName}");
@@ -552,7 +680,7 @@ namespace HospitalToday.UI
             Console.WriteLine();
             Console.WriteLine("Back to main menu - press 0");
             var answer = Console.ReadLine();
-            if(answer.Equals("0"))
+            if (answer.Equals("0"))
             {
                 MainMenuHandler();
             }

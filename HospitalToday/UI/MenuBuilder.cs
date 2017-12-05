@@ -14,16 +14,18 @@ namespace HospitalToday.UI
             menuData = new MenuData();
         }
 
-        private StringBuilder menuBuilder;
-        private MenuData menuData;
+        private readonly StringBuilder menuBuilder;
+        private readonly MenuData menuData;
 
         public int MainMenu()
         {
             Clear();
             menuData.MainMenuData.ForEach(x => menuBuilder.AppendLine(x));
             Console.WriteLine(menuBuilder);
-            int req;
+
             Console.WriteLine("Answer:");
+
+            int req;
             var answer = Console.ReadLine();
             var result = int.TryParse(answer, out req);
             
@@ -35,8 +37,10 @@ namespace HospitalToday.UI
             Clear();
             menuData.DoctorsMenuData.ForEach(x => menuBuilder.AppendLine(x));
             Console.WriteLine(menuBuilder);
-            int req;
+
             Console.WriteLine("Answer:");
+
+            int req;
             var answer = Console.ReadLine();
             var result = int.TryParse(answer, out req);
 
@@ -48,8 +52,10 @@ namespace HospitalToday.UI
             Clear();
             menuData.PatientsMenuData.ForEach(x => menuBuilder.AppendLine(x));
             Console.WriteLine(menuBuilder);
-            int req;
+
             Console.WriteLine("Answer:");
+
+            int req;
             var answer = Console.ReadLine();
             var result = int.TryParse(answer, out req);
 
@@ -61,8 +67,10 @@ namespace HospitalToday.UI
             Clear();
             menuData.MedicinesMenuData.ForEach(x => menuBuilder.AppendLine(x));
             Console.WriteLine(menuBuilder);
-            int req;
+
             Console.WriteLine("Answer:");
+
+            int req;
             var answer = Console.ReadLine();
             var result = int.TryParse(answer, out req);
 
@@ -74,8 +82,10 @@ namespace HospitalToday.UI
             Clear();
             menuData.ReportsMenuData.ForEach(x => menuBuilder.AppendLine(x));
             Console.WriteLine(menuBuilder);
-            int req;
+
             Console.WriteLine("Answer:");
+
+            int req;
             var answer = Console.ReadLine();
             var result = int.TryParse(answer, out req);
 
