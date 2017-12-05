@@ -51,8 +51,12 @@ namespace HospitalToday.UI
                 case 3:
                     ReportMenuHandler(menuBuilder.ReportMenu());
                     break;
-                default:
+                case 4:
                     Console.WriteLine("Bye!");
+                    break;
+                default:
+                    Console.WriteLine("Incorrect point of the menu");
+                    BackToMainMenu();
                     break;
             }
         }
@@ -73,12 +77,14 @@ namespace HospitalToday.UI
                 case 3:
                     GetAllDoctors();
                     break;
+                case 4:
+                    MainMenuHandler();
+                    break;
                 default:
                     Console.WriteLine("Incorrect point of the menu");
+                    BackToMainMenu();
                     break;
             }
-
-            BackToMainMenu();
         }
 
         private void AddDoctor()
@@ -175,8 +181,12 @@ namespace HospitalToday.UI
                 case 3:
                     GetAllPatients();
                     break;
+                case 4:
+                    MainMenuHandler();
+                    break;
                 default:
                     Console.WriteLine("Incorrect point of the menu");
+                    BackToMainMenu();
                     break;
             }
 
@@ -294,12 +304,14 @@ namespace HospitalToday.UI
                 case 3:
                     GetAllMedicines();
                     break;
+                case 4:
+                    MainMenuHandler();
+                    break;
                 default:
                     Console.WriteLine("Incorrect point of the menu");
+                    BackToMainMenu();
                     break;
             }
-
-            BackToMainMenu();
         }
 
         private void AddMedicine()
@@ -499,12 +511,14 @@ namespace HospitalToday.UI
                 case 4:
                     GetAllReports();
                     break;
+                case 5:
+                    MainMenuHandler();
+                    break;
                 default:
                     Console.WriteLine("Incorrect point of the menu");
+                    BackToMainMenu();
                     break;
             }
-
-            BackToMainMenu();
         }
 
         private void GetReportTotalCost()
@@ -550,6 +564,7 @@ namespace HospitalToday.UI
 
             Person doctor = doctors.GetItemById(docId);
 
+            Console.WriteLine("Patient's id:");
             answer = Console.ReadLine();
             int patId;
             result = Int32.TryParse(answer, out patId);
